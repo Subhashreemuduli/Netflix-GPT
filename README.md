@@ -15,6 +15,11 @@
 -created redux store with userSlice
 -implement sign out
 -updated profile
+-Bugfix:sign up user displayName and profile picture update
+-Bugfix: if the user is not logged in redirect to login page and vise-versa
+-Bugfix: unsubscribe to the onAuthStateChanged callback
+-Add hardcoded values to the constants file
+-fetch movies data from RapidAPI Movies(Movies Verse)
 
 # Features
 
