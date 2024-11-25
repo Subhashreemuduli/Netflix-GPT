@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { requestOptions } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 
-export const useMovies = () => {
+export const useUpcomingMovies = () => {
   //fetch data from RapidAPI and update the store
 
   const dispatch = useDispatch();
