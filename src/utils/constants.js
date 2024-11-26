@@ -50,3 +50,10 @@ export const requestOption = {
   headers: myHeader,
   redirect: "follow",
 };
+
+export const SUPPORTED_LANGUAGES = [
+  { idetifier: "en", name: "English" },
+  { idetifier: "hindi", name: "Hindi" },
+  { idetifier: "spanish", name: "Spanish" },
+  { idetifier: "chinese", name: "Chinese" },
+];
