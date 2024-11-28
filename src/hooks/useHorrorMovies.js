@@ -1,19 +1,21 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addHorrorMovies } from "../utils/moviesSlice";
+import { API_KEY } from "../utils/constants";
 
 const useHorrorMovies = () => {
   const dispatch = useDispatch();
 
+  const horrorMovies = useSelector((store) => store.movies.horrorMovies);
+
   useEffect(() => {
-    getMovies();
+    if (!horrorMovies) {
+      getMovies();
+    }
   }, []);
 
   const myHeaders = new Headers();
-  myHeaders.append(
-    "x-apihub-key",
-    "pQ-qe6rsvguMOhITf5RPPLWrB7O1pXdwtSOMAYudQfPfYYnrHD"
-  );
+  myHeaders.append("x-apihub-key", API_KEY);
   myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
   myHeaders.append("x-apihub-endpoint", "e630a9b2-ceba-4267-a7fb-72000ea46239");
 

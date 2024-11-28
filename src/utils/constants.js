@@ -7,27 +7,10 @@ export const NETFLIX_POSTER =
 export const USER_AVATAR =
   "https://occ-0-4995-2186.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229";
 
-// const myHeaders = new Headers();
-// myHeaders.append(
-//   "x-apihub-key",
-//   "pQ-qe6rsvguMOhITf5RPPLWrB7O1pXdwtSOMAYudQfPfYYnrHD"
-// );
-// myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
-// myHeaders.append("x-apihub-endpoint", "4f700f4a-4bd2-4604-8d5b-7b5e4c976c65");
-
-// export const requestOptions = {
-//   method: "GET",
-//   headers: myHeaders,
-//   redirect: "follow",
-// };
-
-// const api_key="pQ-qe6rsvguMOhITf5RPPLWrB7O1pXdwtSOMAYudQfPfYYnrHD"
+export const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 
 const myHeaders = new Headers();
-myHeaders.append(
-  "x-apihub-key",
-  "pQ-qe6rsvguMOhITf5RPPLWrB7O1pXdwtSOMAYudQfPfYYnrHD"
-);
+myHeaders.append("x-apihub-key", API_KEY);
 myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
 myHeaders.append("x-apihub-endpoint", "c87f1a11-e835-4a06-bc95-c6fc6a937f22");
 
@@ -38,10 +21,7 @@ export const requestOptions = {
 };
 
 const myHeader = new Headers();
-myHeader.append(
-  "x-apihub-key",
-  "pQ-qe6rsvguMOhITf5RPPLWrB7O1pXdwtSOMAYudQfPfYYnrHD"
-);
+myHeader.append("x-apihub-key", API_KEY);
 myHeader.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
 myHeader.append("x-apihub-endpoint", "5122e0f8-a949-45a9-aedf-5eaf61c6085b");
 
@@ -57,3 +37,5 @@ export const SUPPORTED_LANGUAGES = [
   { idetifier: "spanish", name: "Spanish" },
   { idetifier: "chinese", name: "Chinese" },
 ];
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
