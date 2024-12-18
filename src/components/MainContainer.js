@@ -8,7 +8,7 @@ const MainContainer = () => {
   const mainMovie = movies[0];
   const { image, title, categories, link } = mainMovie?.list[0];
   return (
-    <div>
+    <div className="pt-[10%] md:pt-0 ">
       <VideoTitle image={image} title={title} categories={categories} />
       <VideoBackground videoLink={link} title={title} />
     </div>

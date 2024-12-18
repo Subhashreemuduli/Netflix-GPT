@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTopMovies } from "../utils/moviesSlice";
 import { API_KEY } from "../utils/constants";
 
 const useTopMovies = () => {
+  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
 
   const topMovies = useSelector((store) => store.movies.topMovies);
@@ -32,7 +34,9 @@ const useTopMovies = () => {
     );
     const json = await data.json();
     dispatch(addTopMovies(json.movies));
+    setLoading(false);
   };
+  return loading;
 };
 
 export default useTopMovies;

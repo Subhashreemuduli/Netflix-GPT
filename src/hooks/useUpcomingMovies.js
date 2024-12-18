@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestOptions } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 
 export const useUpcomingMovies = () => {
+  const [loading, setLoading] = useState(true);
+
   //fetch data from RapidAPI and update the store
 
   const dispatch = useDispatch();
@@ -23,5 +25,7 @@ export const useUpcomingMovies = () => {
     );
     const json = await data.json();
     dispatch(addNowPlayingMovies(json.movies));
+    setLoading(false);
   };
+  return loading;
 };

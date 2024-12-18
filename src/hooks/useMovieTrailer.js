@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 
 const useMovieTrailer = (title) => {
+  const [loading, setLoading] = useState(true);
+
   //fetch trailer video and updating the store
   const dispatch = useDispatch();
 
@@ -22,7 +24,9 @@ const useMovieTrailer = (title) => {
     const videoId = json?.items[0]?.id?.videoId;
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
     dispatch(addTrailerVideo(embedUrl));
+    setLoading(false);
   };
+  return loading;
 };
 
 export default useMovieTrailer;

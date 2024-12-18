@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { lang } from "../utils/languageConstants";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { addGptMovieResult } from "../utils/gptSlice";
 import { API_KEY, OPENAI_KEY } from "../utils/constants";
 import OpenAI from "openai";
+import ShimmerCard from "./ShimmerCard";
 
 const GptSearchBar = () => {
+  const [loading, setLoading] = useState(false);
+
   const langKey = useSelector((store) => store.config?.lang);
   const searchText = useRef(null);
   const dispatch = useDispatch();
@@ -47,43 +50,45 @@ const GptSearchBar = () => {
       dangerouslyAllowBrowser: true,
     });
 
+    setLoading(true);
+
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
-      ", only give me names of 3 movies, comma separated like the example result given ahead.Example Result: Happy New Year, Welcome Back, Phir Hera Pheri, Bahubali, Pushpa";
+      ", only give me names of 2 movies, comma separated like the example result given ahead.Example Result: Happy New Year, Welcome Back, Phir Hera Pheri, Bahubali, Pushpa";
     const gptResults = await client.chat.completions.create({
       messages: [{ role: "user", content: gptQuery }],
       model: "gpt-3.5-turbo",
     });
-
-    // if(!gptResults) //errror handling
 
     const gptMovies = gptResults?.choices[0]?.message?.content.split(",");
 
     const result = gptMovies.map((movie) => searchMoviesFromApi(movie));
     const movies = await Promise.all(result);
     dispatch(addGptMovieResult({ movieName: gptMovies, movieResults: movies }));
+    setLoading(false);
   };
 
   return (
-    <div className=" ml-[30%] ">
+    <div className="pt-[30%] md:pt-8 flex justify-center ">
       <form
-        className="bg-gray-900 absolute mt-[10%] grid grid-cols-12 z-10"
+        className="bg-gray-900 absolute mt-[10%] grid grid-cols-12  z-10 "
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
           placeholder={lang[langKey]?.placeHolderText}
-          className="py-2 px-4 m-2 text-black text-lg col-span-10"
+          className="py-2 px-4 m-2 text-black md:text-lg text-md md:col-span-10 col-span-9 rounded-lg "
         />
         <button
-          className=" m-2 px-4 bg-red-500 text-white text-lg rounded-lg col-span-2 font-semibold"
+          className=" md:m-2 md:px-4 p-2 m-2  bg-red-500 text-white md:text-lg rounded-lg md:col-span-2 col-span-3 font-semibold text-md"
           onClick={handleGptSearchClick}
         >
           {lang[langKey]?.search}
         </button>
       </form>
+      {loading && <ShimmerCard />}
     </div>
   );
 };

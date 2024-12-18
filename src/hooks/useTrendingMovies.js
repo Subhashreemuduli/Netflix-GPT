@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestOption } from "../utils/constants";
 import { addTrendingMovies } from "../utils/moviesSlice";
 
 export const useTrendingMovies = () => {
+  const [loading, setLoading] = useState(true);
+
   //fetch data from RapidAPI and update the store
 
   const dispatch = useDispatch();
@@ -23,5 +25,7 @@ export const useTrendingMovies = () => {
     );
     const json = await data.json();
     dispatch(addTrendingMovies(json.movies));
+    setLoading(false);
   };
+  return loading;
 };

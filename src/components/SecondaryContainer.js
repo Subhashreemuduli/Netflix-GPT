@@ -6,13 +6,22 @@ const SecondaryContainer = () => {
   const upcomingMovies = movies?.nowPlayingMovies?.map(
     (movie) => movie.list[0]
   );
+
   return (
     <div className="bg-black">
-      <div className="-mt-52 relative z-20">
-        <MovieList title={"Upcoming"} movies={upcomingMovies} />
-        <MovieList title={"Trending Now"} movies={movies.trendingMovies} />
-        <MovieList title={"Top Movies"} movies={movies.topMovies} />
-        <MovieList title={"Horror"} movies={movies.horrorMovies} />
+      <div className="md:-mt-56 mt-0 relative z-20">
+        {upcomingMovies && (
+          <MovieList title={"Upcoming"} movies={upcomingMovies} />
+        )}
+        {movies.trendingMovies && (
+          <MovieList title={"Trending Now"} movies={movies.trendingMovies} />
+        )}
+        {movies.topMovies && (
+          <MovieList title={"Top Movies"} movies={movies.topMovies} />
+        )}
+        {movies.horrorMovies && (
+          <MovieList title={"Horror"} movies={movies.horrorMovies} />
+        )}
       </div>
     </div>
   );

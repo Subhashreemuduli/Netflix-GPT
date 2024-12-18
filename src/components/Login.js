@@ -90,14 +90,22 @@ const Login = () => {
   };
 
   return (
-    <div className="absolute z-10">
+    <div>
       <Header />
-      <div>
+
+      <div className="absolute">
+        <img
+          src={NETFLIX_POSTER}
+          alt="netflix poster"
+          className="h-screen object-cover w-screen"
+        />
+      </div>
+      <div className="flex justify-center">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className=" flex bg-black absolute flex-col  ml-[550px] mt-28 px-16 py-14 rounded-lg bg-opacity-85 w-[420px] text-white"
+          className=" flex bg-black absolute flex-col mt-36  px-8 py-8 rounded-lg bg-opacity-85 md:w-[400px] mx-[10%] text-white"
         >
-          <h1 className="font-bold text-3xl mb-6">
+          <h1 className="font-bold md:text-2xl text-xl md:mb-6 mb-4">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
           {!isSignInForm && (
@@ -105,35 +113,39 @@ const Login = () => {
               ref={name}
               type="text"
               placeholder="Full Name"
-              className="p-4 my-3 rounded-md bg-gray-800 "
+              className="p-4 my-3 rounded-md bg-gray-800 md:text-md text-sm"
             />
           )}
           <input
             ref={email}
             type="text"
             placeholder="Email or Phone Number"
-            className="p-4 my-3 rounded-md bg-gray-800 "
+            className="p-4 my-3 rounded-md bg-gray-800 md:text-md text-sm"
           />
           <input
             ref={password}
             type="password"
             placeholder="Password"
-            className="p-4 my-3 rounded-md bg-gray-800 "
+            className="p-4 my-3 rounded-md bg-gray-800 md:text-md text-sm"
           />
-          <p className="text-red-500 pt-2 font-semibold">{errorMessage}</p>
+          <p className="text-red-500 pt-2 font-semibold md:text-md text-sm">
+            {errorMessage}
+          </p>
           <button
-            className="p-3 my-6 bg-red-600  font-semibold rounded-md "
+            className="p-3 mt-4  bg-red-600  font-semibold rounded-md md:text-md text-sm"
             onClick={handleButtonClick}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
-          <p className="py-6 cursor-pointer" onClick={toggleSignInForm}>
+          <p
+            className="py-6 cursor-pointer md:text-md text-sm"
+            onClick={toggleSignInForm}
+          >
             {isSignInForm
               ? "New to Netflix? Sign up now."
               : "Already registered? Sign In now."}
           </p>
         </form>
-        <img src={NETFLIX_POSTER} alt="netflix poster" />
       </div>
     </div>
   );

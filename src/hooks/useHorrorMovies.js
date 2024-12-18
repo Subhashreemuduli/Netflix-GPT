@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addHorrorMovies } from "../utils/moviesSlice";
 import { API_KEY } from "../utils/constants";
 
 const useHorrorMovies = () => {
+  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
 
   const horrorMovies = useSelector((store) => store.movies.horrorMovies);
@@ -32,7 +34,9 @@ const useHorrorMovies = () => {
     );
     const json = await data.json();
     dispatch(addHorrorMovies(json.list));
+    setLoading(false);
   };
+  return loading;
 };
 
 export default useHorrorMovies;
