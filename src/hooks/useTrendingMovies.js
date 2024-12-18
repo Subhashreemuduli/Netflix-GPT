@@ -16,6 +16,7 @@ export const useTrendingMovies = () => {
     if (!trendingMovies) {
       getTrendingMovies();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTrendingMovies = async () => {

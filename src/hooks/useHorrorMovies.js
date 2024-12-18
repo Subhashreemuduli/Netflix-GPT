@@ -14,6 +14,7 @@ const useHorrorMovies = () => {
     if (!horrorMovies) {
       getMovies();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const myHeaders = new Headers();

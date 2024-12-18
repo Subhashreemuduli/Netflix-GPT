@@ -14,6 +14,7 @@ const useMovieTrailer = (title) => {
     if (!trailerVideo) {
       getTrailer();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTrailer = async () => {
